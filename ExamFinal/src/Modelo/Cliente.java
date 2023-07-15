@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package Modelo;
 
 /**
  *
@@ -19,12 +19,11 @@ public class Cliente extends Persona implements Serializable {
     }
 
     public boolean pagar() {
-        // Lógica para realizar el pago
         return true;
     }
 
     public boolean recargarDinero() {
-        // Lógica para recargar dinero
         return true;
     }
 }
+

@@ -24,13 +24,12 @@ public class Producto implements Serializable {
     }
 
     public boolean vender(int cantidad) {
-        // Lógica para vender un producto
         return true;
     }
 
     public boolean reponer(int cantidad) {
-        // Lógica para reponer el stock de un producto
         return true;
     }
 }
+
 

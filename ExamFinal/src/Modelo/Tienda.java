@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package Modelo;
 
 /**
  *
@@ -19,6 +19,7 @@ public class Tienda implements Serializable {
     private List<Cliente> clientes;
     private List<Categoria> categorias;
     private List<Producto> productos;
+    private List<Venta> ventas;
 
     public Tienda(String nombre, String ruc, String direccion) {
         this.nombre = nombre;
@@ -27,6 +28,7 @@ public class Tienda implements Serializable {
         this.clientes = new ArrayList<>();
         this.categorias = new ArrayList<>();
         this.productos = new ArrayList<>();
+        this.ventas = new ArrayList<>();
     }
 
     public void agregarCliente(Cliente cliente) {
@@ -83,5 +85,12 @@ public class Tienda implements Serializable {
         }
         return null;
     }
-}
 
+    public void agregarVenta(Venta venta) {
+        ventas.add(venta);
+    }
+
+    public void eliminarVenta(Venta venta) {
+        ventas.remove(venta);
+    }
+}
