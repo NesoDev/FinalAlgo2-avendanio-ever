@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author LENOVO

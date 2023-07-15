@@ -79,7 +79,7 @@ public class Tienda implements Serializable {
         for (Persona persona : clientes) {
             if (persona instanceof Trabajador && ((Trabajador) persona).getEmail().equals(email) && ((Trabajador) persona).getPassword().equals(password)) {
                 return persona;
-            } else if (persona instanceof Cliente && ((Cliente) persona).getEmail().equals(email) && ((Cliente) persona).getPassword().equals(password)) {
+            } else if (persona instanceof Cliente && ((Cliente) persona).getNumDocumento().equals(email) && ((Trabajador) persona).getPassword().equals(password)) {
                 return persona;
             }
         }

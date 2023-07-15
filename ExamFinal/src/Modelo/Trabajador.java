@@ -4,6 +4,9 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  *
  * @author LENOVO
@@ -15,6 +18,22 @@ public class Trabajador extends Persona implements Serializable {
     public Trabajador(String nombre, String paterno, String materno, Date nacimiento, String numDocumento, String password, String email) {
         super(nombre, paterno, materno, nacimiento, numDocumento);
         this.password = password;
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
