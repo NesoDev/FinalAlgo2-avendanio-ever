@@ -8,47 +8,67 @@ package Controlador;
  *
  * @author LENOVO
  */
-import Modelo.Categoria;
-import Modelo.Cliente;
-import Modelo.Producto;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import Modelo.Persona;
+import Vista.TiendaLogin;
 import Modelo.Tienda;
-import Vista.TiendaView;
-import java.util.List;
 
 public class Controlador {
     private Tienda tienda;
-    private TiendaView vista;
+    private TiendaLogin vista;
 
-    public Controlador(Tienda tienda, TiendaView vista) {
+    public Controlador(Tienda tienda, TiendaLogin vista) {
         this.tienda = tienda;
         this.vista = vista;
+
+        this.vista.btnSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Serializar los datos antes de salir
+                System.exit(0);
+            }
+        });
+
+        this.vista.btnIngresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String email = vista.txtUsuairo.getText();
+                String password = new String(vista.txtClave.getPassword());
+
+                Persona persona = tienda.autenticar(email, password);
+
+                if (persona != null) {
+                    iniciarTienda(persona);
+                    vista.dispose();
+                } else {
+                    mostrarMensajeError("Credenciales inválidas");
+                    limpiarControles();
+                }
+            }
+        });
     }
 
-    public void agregarCliente(String nombre, String paterno, String materno, Date nacimiento, String numDocumento, int celular, double dinero) {
-        Cliente cliente = new Cliente(nombre, paterno, materno, nacimiento, numDocumento, celular, dinero);
-        tienda.agregarCliente(cliente);
+    public void iniciar() {
+        this.vista.setLocationRelativeTo(null);
+        limpiarControles();
+        this.vista.setVisible(true);
     }
 
-    public void agregarCategoria(String nombre) {
-        Categoria categoria = new Categoria(nombre);
-        tienda.agregarCategoria(categoria);
+    public void limpiarControles() {
+        vista.txtUsuairo.setText("");
+        vista.txtClave.setText("");
     }
 
-    public void agregarProducto(double precio, String nombre, int stock, String marca, Categoria categoria) {
-        Producto producto = new Producto(precio, nombre, stock, marca, categoria);
-        tienda.agregarProducto(producto);
+    public void iniciarTienda(Persona persona) {
+        // Lógica para iniciar la tienda y mostrar la interfaz principal
+        // Puedes crear una instancia de la clase TiendaPrincipalView y un controlador correspondiente
+        // para administrar las operaciones de la tienda
     }
 
-    public void buscarProductoPorCategoria(Categoria categoria) {
-        List<Producto> productos = tienda.buscarProductoPorCategoria(categoria);
-        vista.mostrarProductos(productos);
-    }
-
-    public static void main(String[] args) {
-        Tienda tienda = new Tienda("Mi Tienda", "1234567890", "Dirección de la tienda");
-        TiendaView vista = new TiendaView();
-        Controlador controller = new Controlador(tienda, vista);
-
+    public void mostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(vista, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
-
